@@ -52,14 +52,14 @@ class Run:
         self.root.configure(bg=COLORS[0])
         self.screen_width = self.root.winfo_screenwidth()
         self.screen_height = self.root.winfo_screenheight()
+        self.root.geometry('%dx%d+%d+%d' % (self.screen_width, self.screen_height, 0, 0))
 
-    def create_squares(self):
-        self.root.geometry('%dx%d+%d+%d' % (screen_width, screen_height, 0, 0))
+    def create_squares(self, block_size):
         x = 0
         y = 0
         for x in range(0, int(self.screen_height / block_size) + 1):
             for y in range(0, int(self.screen_width / block_size) + 1):
-                win = ColorBox(self.root, x, y, 50, COLORS[0])
+                win = ColorBox(self.root, x, y, block_size, COLORS[0])
 
     def push_back(self):
         self.root.lower()
@@ -68,6 +68,7 @@ class Run:
 
 def main():
     App = Run()
+    App.create_squares(50)
     App.push_back()
     App.root.mainloop()
 
