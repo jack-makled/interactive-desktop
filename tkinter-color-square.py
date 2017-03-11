@@ -1,7 +1,6 @@
 from Tkinter import *
 from random import choice
 
-# TODO - Eventually we'll make this more flexible. For now: Fuck yeah, Nord.
 
 COLORS = [
     "#2E3440",  # Polar Night
@@ -50,15 +49,15 @@ class Run:
         self.root.overrideredirect(True)
         self.root.resizable(width=False, height=False)
         self.root.configure(bg=COLORS[0])
-        self.screen_width = self.root.winfo_screenwidth()
-        self.screen_height = self.root.winfo_screenheight()
-        self.root.geometry('%dx%d+%d+%d' % (self.screen_width, self.screen_height, 0, 0))
+        self.sw = self.root.winfo_screenwidth()
+        self.sh = self.root.winfo_screenheight()
+        self.root.geometry('%dx%d+%d+%d' % (self.sw, self.sh, 0, 0))
 
     def create_squares(self, block_size):
         x = 0
         y = 0
-        for x in range(0, int(self.screen_height / block_size) + 1):
-            for y in range(0, int(self.screen_width / block_size) + 1):
+        for x in range(0, int(self.sh / block_size) + 1):
+            for y in range(0, int(self.sw / block_size) + 1):
                 win = ColorBox(self.root, x, y, block_size, COLORS[0])
 
     def push_back(self):
@@ -83,6 +82,5 @@ if __name__ == '__main__':
         print("Multiple of 3, please")
 
 # TODO - Add option to save current image or somethin.
-# TODO - Make this 'smarter'. Not just random. Some pattern or some shit.
 # TODO - It'd be cool if it were a single color and
 #        just random squares would change.
